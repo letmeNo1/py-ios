@@ -15,7 +15,7 @@ setup(
         # 'requests>=2.25.1',
     ],
      package_data={
-        'py_ios': ['lib/windows/*']
+        'py_ios': ['lib/windows/*', 'lib/mac/*'],  # Include the executables in the package
     },
     classifiers=[
         'Programming Language :: Python :: 3',
