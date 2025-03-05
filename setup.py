@@ -25,7 +25,7 @@ setup(
     python_requires='>=3.6',  # Specify the Python version requirement
     entry_points={
         'console_scripts': [
-            'idb=py_ios.execute_cmd:main',  # Replace with your command and module
+            'ios=py_ios.execute_cmd:main',  # Replace with your command and module
         ],
     },
 )
