@@ -1,4 +1,200 @@
-# py-ios：基于go-ios项目的iOS设备交互工具封装
+# py - ios: A Wrapper for iOS Device Interaction Tools Based on the go - ios Project
+
+-   [English](#Installation)
+-   [中文版](#安装)
+
+For the Chinese version of this README, please refer to [here](LINK_TO_CHINESE_README). (Please replace `LINK_TO_CHINESE_README` with the actual link to the Chinese README file.)
+
+`py-ios` is a feature - rich command - line tool that is simply wrapped based on the [https://github.com/danielpaulus/go - ios](https://github.com/danielpaulus/go - ios) project. It simplifies the process of interacting with iOS devices, providing a user - friendly interface for a wide range of operations.
+
+## Installation
+The specific steps for installing `py - ios` depend on your environment. Usually, you can install it via a package manager (such as `pip`):
+```bash
+pip install py - ios
+```
+Make sure your system meets the dependency requirements of `py - ios`. The required dependency libraries may be automatically installed during the installation process.
+
+## Usage
+`py - ios` offers numerous sub - commands, each with a specific function. You can view all available sub - commands and their brief descriptions by using `idb --help`. Here are the detailed introductions of some commonly used sub - commands:
+
+### Device Information and Management
+- **Check Version**:
+  ```bash
+  idb --version
+  ```
+  This command is used to view the current version number of `py - ios`.
+- **Activate Device**:
+  ```bash
+  idb activate
+  ```
+  Attempt to activate the connected iOS device. The activation process may require meeting specific conditions, such as the device being paired and conforming to the activation policy.
+- **Get Device Name**:
+  ```bash
+  idb devicename
+  ```
+  Returns the name of the connected iOS device.
+- **View Device State List**:
+  ```bash
+  idb devicestate list
+  ```
+  Displays various current state information of the device, such as whether the device is locked and the battery status.
+- **Enter Development Mode**:
+  ```bash
+  idb devmode enable
+  ```
+  Enables the device's development mode, which is necessary for some advanced debugging and development operations.
+- **Reboot Device**:
+  ```bash
+  idb reboot
+  ```
+  Reboots the connected iOS device.
+
+### Application Management
+- **List Applications**:
+  ```bash
+  idb apps
+  ```
+  Lists the applications installed on the device. You can use the `--system` option to list system applications, the `--all` option to list all applications (including system applications), the `--list` option to output in a concise list form, and the `--filesharing` option to list applications that support file sharing.
+- **Install Application**:
+  ```bash
+  idb install --path=path/to/ipaOrAppFolder
+  ```
+  Installs the IPA file or application folder at the specified path onto the device.
+- **Launch Application**:
+  ```bash
+  idb launch bundleID
+  ```
+  Launches the application with the specified Bundle ID. You can use the `--wait` option to wait for the application to start up completely, the `--kill - existing` option to kill the running application with the same name before launching, and the `--arg` and `--env` options to pass parameters and environment variables to the application.
+- **Uninstall Application**:
+  ```bash
+  idb uninstall bundleID
+  ```
+  Uninstalls the application with the specified Bundle ID.
+- **Get Application File System Synchronization**:
+  ```bash
+  idb fsync --app=bundleId pull --srcPath=srcPath --dstPath=dstPath
+  idb fsync --app=bundleId push --srcPath=srcPath --dstPath=dstPath
+  ```
+  Use `pull` to pull files or directories from the application sandbox to the local machine, and use `push` to push local files or directories to the application sandbox. It also supports operations such as `rm` (delete), `tree` (view directory structure), and `mkdir` (create directory).
+
+### Debugging and Diagnosis
+- **Debug Application**:
+  ```bash
+  idb debug app_path
+  ```
+  Launches a debugging session for the specified application. You can use the `--stop - at - entry` option to pause debugging at the application's entry point.
+- **View Crash Logs**:
+  ```bash
+  idb crash ls
+  ```
+  Lists the crash logs on the device. You can filter the logs through `<pattern>`.
+  ```bash
+  idb crash cp srcpattern target
+  ```
+  Copies the crash logs that match `<srcpattern>` to the `<target>` directory.
+  ```bash
+  idb crash rm cwd pattern
+  ```
+  Deletes the crash logs that match `<pattern>` in the `<cwd>` directory.
+- **View System Logs**:
+  ```bash
+  idb syslog
+  ```
+  Views the device's system logs in real - time. Using the `--parse` option can parse and format the logs for output.
+- **List Device Diagnostic Information**:
+  ```bash
+  idb diagnostics list
+  ```
+  Displays various diagnostic information of the device, such as hardware status and software version.
+
+### System Settings and Function Operations
+- **Set Language**:
+  ```bash
+  idb lang --setlocale=locale --setlang=newlang
+  ```
+  Sets the language and region settings of the device.
+- **Set Date**:
+  ```bash
+  idb date
+  ```
+  Can be used to set the device's date and time (the specific setting method may vary depending on command options).
+- **Assistive Function Operations**:
+  ```bash
+  idb assistivetouch enable
+  idb assistivetouch disable
+  idb assistivetouch toggle
+  idb assistivetouch get
+  ```
+  These commands are used to enable, disable, toggle, and obtain the status of the AssistiveTouch function respectively. Similarly, the `voiceover` and `zoom` sub - commands can perform the same operations on the VoiceOver and zoom functions.
+- **Location Simulation**:
+  ```bash
+  idb setlocation --lat=lat --lon=lon
+  ```
+  Sets the simulated location coordinates of the device.
+  ```bash
+  idb setlocationgpx --gpxfilepath=gpxfilepath
+  ```
+  Uses a GPX file to simulate the device's location trajectory.
+- **HTTP Proxy Settings**:
+  ```bash
+  idb httpproxy host port user pass --p12file=orgid --password=p12password
+  ```
+  Sets the device's HTTP proxy.
+  ```bash
+  idb httpproxy remove
+  ```
+  Removes the device's HTTP proxy settings.
+
+### Network - related
+- **Port Forwarding**:
+  ```bash
+  idb forward hostPort targetPort
+  ```
+  Forwards the `<targetPort>` port of the device to the `<hostPort>` port of the host, facilitating access to services within the device on the host.
+- **Network Traffic Capture**:
+  ```bash
+  idb pcap
+  ```
+  Captures the device's network traffic. You can use the `--pid` or `--process` option to specify capturing the traffic of a specific process.
+- **Get Device IP Address**:
+  ```bash
+  idb ip
+  ```
+  Obtains the current IP address of the device.
+
+### Other Functions
+- **Device Pairing**:
+  ```bash
+  idb pair --p12file=orgid --password=p12password
+  ```
+  Uses the specified P12 file and password to pair the device.
+- **Read Pairing Information**:
+  ```bash
+  idb readpair
+  ```
+  Reads the pairing information of the device.
+- **Run Tests**:
+  ```bash
+  idb runtest --bundle - id=bundleid --test - runner - bundle - id=testrunnerbundleid --xctest - config=xctestconfig
+  ```
+  Runs the tests of an iOS application. You can specify the test Bundle ID, the test runner Bundle ID, and the XCTest configuration file, etc.
+
+## Examples
+1. Install an application named `MyApp.ipa` onto the device:
+  ```bash
+  idb install --path=MyApp.ipa
+  ```
+2. Launch the `com.example.MyApp` application and pass the parameter `--arg=value` and the environment variable `--env=ENV_VAR=value`:
+  ```bash
+  idb launch com.example.MyApp --arg=value --env=ENV_VAR=value
+  ```
+3. Pull the `Documents` directory from the sandbox of the `com.example.MyApp` application on the device to the `~/Downloads/MyAppDocuments` directory on the local machine:
+  ```bash
+  idb fsync --app=com.example.MyApp pull --srcPath=Documents --dstPath=~/Downloads/MyAppDocuments
+  ```
+
+For the Chinese version of this README, please refer to [here](LINK_TO_CHINESE_README). (Please replace `LINK_TO_CHINESE_README` with the actual link to the Chinese README file.)
+
 
 `py-ios` 是一款功能丰富的命令行工具，它基于 [https://github.com/danielpaulus/go-ios](https://github.com/danielpaulus/go-ios) 项目进行简单封装
 
