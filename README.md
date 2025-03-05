@@ -196,7 +196,7 @@ Make sure your system meets the dependency requirements of `py - ios`. The requi
 For the Chinese version of this README, please refer to [here](LINK_TO_CHINESE_README). (Please replace `LINK_TO_CHINESE_README` with the actual link to the Chinese README file.)
 
 
-`py-ios` 是一款功能丰富的命令行工具，它基于 [https://github.com/danielpaulus/go-ios](https://github.com/danielpaulus/go-ios) 项目进行简单封装
+`py-ios` 是一款功能丰富的命令行工具，它基于 [https://github.com/danielpaulus/go-ios](https://github.com/danielpaulus/go-ios) 项目进行简单封装, window环境不需要额外下载wintun.dll，也无需在管理员权限下启动 tunnel start
 
 ## 安装
 安装 `py-ios` 的具体步骤取决于你的环境。通常，你可以通过包管理器（如 `pip`）进行安装：
