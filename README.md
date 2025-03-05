@@ -1,4 +1,4 @@
-# py - ios: A Wrapper for iOS Device Interaction Tools Based on the go - ios Project
+# py-ios: A Wrapper for iOS Device Interaction Tools Based on the go - ios Project
 
 -   [English](#Installation)
 -   [中文版](#安装)
