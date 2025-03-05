@@ -1,6 +1,7 @@
 ﻿import os
 import subprocess
 import argparse
+from loguru import logger
 
 
 def run_exe(*cmd_args):
@@ -10,11 +11,11 @@ def run_exe(*cmd_args):
     exe_path = os.path.join(current_dir, "lib", "windows", "go-ios.exe")
 
     # Construct the command with the executable path and the variable arguments
-    if "tunnel" in cmd_args:
-
+    if cmd_args == ('tunnel', 'start'):
         command = f'{exe_path} --userspace ' + ' '.join(cmd_args)
     else:
         command = f'{exe_path} ' + ' '.join(cmd_args)
+    logger.debug(command)
 
     # Execute the command
     subprocess.run(command, shell=True)
