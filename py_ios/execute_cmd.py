@@ -15,9 +15,10 @@ def run_exe(*cmd_args):
 
         # Get the full path of the executable
         exe_path = os.path.join(current_dir, "lib", "windows", "go-ios.exe")
+        print(cmd_args)
 
         # Construct the command with the executable path and the variable arguments
-        if "tunnel" in cmd_args:
+        if all(arg in cmd_args for arg in ("start", "tunnel")):
 
             command = f'{exe_path} --userspace ' + ' '.join(cmd_args)
         else:
