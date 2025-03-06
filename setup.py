@@ -2,7 +2,7 @@
 
 setup(
     name='py_ios',  # Replace with your project's name
-    version='0.1.1',  # Initial version
+    version='0.1.2',  # Initial version
     author='Your Name',  # Replace with your name
     author_email='your.email@example.com',  # Replace with your email
     description='A brief description of your project',
