@@ -10,6 +10,10 @@ def run_exe(*cmd_args):
     if os_name == "Darwin":
         exe_path = os.path.join(current_dir, "lib", "mac", "go-ios")
         command = f'{exe_path} ' + ' '.join(cmd_args)
+        
+    elif os_name == "Linux":
+        exe_path = os.path.join(current_dir, "lib", "linux", "go-ios")
+        command = f'{exe_path} ' + ' '.join(cmd_args)
 
     elif os_name == "Windows":
 
@@ -21,6 +25,7 @@ def run_exe(*cmd_args):
             command = f'{exe_path} --userspace ' + ' '.join(cmd_args)
         else:
             command = f'{exe_path} ' + ' '.join(cmd_args)
+
 
     # Execute the command
     subprocess.run(command, shell=True)
