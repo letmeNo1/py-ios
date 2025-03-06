@@ -15,8 +15,6 @@ def run_exe(*cmd_args):
 
         # Get the full path of the executable
         exe_path = os.path.join(current_dir, "lib", "windows", "go-ios.exe")
-        print(cmd_args)
-
         # Construct the command with the executable path and the variable arguments
         if all(arg in cmd_args for arg in ("start", "tunnel")):
 
@@ -33,7 +31,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run go-ios with specified arguments.")
 
     # Add arguments to the parser
-    parser.add_argument('cmd_args', nargs=argparse.REMAINDER, help="Arguments to pass to go-ios.exe")
+    parser.add_argument('cmd_args', nargs=argparse.REMAINDER, help="Arguments to pass to go-ios")
 
     # Parse the arguments
     args = parser.parse_args()
